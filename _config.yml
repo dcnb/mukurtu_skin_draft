@@ -33,7 +33,7 @@ collection-date: "2020"
 # COLLECTION SETTINGS
 #
 # choose metadata: this is the name of the csv file in your _data directory that describes the objects in your collection
-metadata: collection-metadata 
+metadata: chalcraft 
 
 ##########
 # GOOGLE SERVICES [optional!]
