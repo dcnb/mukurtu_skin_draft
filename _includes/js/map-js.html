@@ -15,7 +15,7 @@
     { "type":"Feature", "geometry":{ "type":"Point", "coordinates":[{{ item.longitude | strip }},{{ item.latitude | strip }}] }, "properties":
     { "title": {{ item.title | escape | jsonify }}, 
     {% for f in fields %}"{{ f.field | escape }}": {{ item[f.field] | escape | jsonify }},{% endfor %} 
-    "format": {{ item.format | jsonify }}, "filename": {{ item.filename | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
+    "format": {{ item.format | jsonify }}, "filename": {{ item.mediasource | jsonify }}, "thumbnail": {{ item.thumbnail | jsonify }}, "id": {{ item.objectid | jsonify }} } }{% unless forloop.last %}, {% endunless %}{% endfor %}
     ]};
 
     /* init map and set zoom */
@@ -81,7 +81,7 @@
         } else if (feature.properties.format.includes("video")) {
             thumbSrc = 'https://img.youtube.com/vi/' +  feature.properties.filename + '/default.jpg';
         } else {
-            thumbSrc = '{{ "/objects/" | relative_url }}' +  feature.properties.filename;
+            thumbSrc = feature.properties.thumbnail;
         }    
         /* create popup content */
         var popupTemplate = '<h4><a class="text-dark" href="' + itemHref + '">' +
