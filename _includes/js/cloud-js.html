@@ -9,7 +9,7 @@
 {%- assign raw-terms = raw-terms | downcase | split: ";" -%}
 
 {% comment %} Clean up raw terms {% endcomment %} 
-{%- capture terms -%}{%- for t in raw-terms -%}{%- if t != "" and t != " " -%}{{ t | strip }};{%- endif -%}{%- endfor -%}{%- endcapture -%}
+{%- capture terms -%}{%- for t in raw-terms -%}{%- if t != "" and t != " " -%}{{ t | strip_html | strip }};{%- endif -%}{%- endfor -%}{%- endcapture -%}
 {%- assign terms = terms | split: ";" | sort -%}
 {%- assign uniqueTerms = terms | uniq | sort -%}
 
